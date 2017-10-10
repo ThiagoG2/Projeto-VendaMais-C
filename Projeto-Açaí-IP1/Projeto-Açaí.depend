@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1503024138 source:c:\users\eduardo\desktop\code\projeto-açaí\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<windows.h>
+
+1504153673 source:c:\users\eduardo\downloads\projeto-açaí\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<windows.h>
+
+1504153673 source:c:\users\eduardo\downloads\projeto-açaí (1)\projeto-açaí\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<windows.h>
+
