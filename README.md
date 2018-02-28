@@ -1,4 +1,13 @@
-# Sistema-C
-Projeto da disciplina de Introdução à Programação - Linguagem C - UFRPE 
+O VendaMaisAçaí foi um projeto desenvolvido em C para a cadeira de Introdução à Programação 1 - UFRPE
 
-Sistema de gerenciamento na venda de Açaí, finalizado com alocação dinâmica e arquivo. 
+#Descrição do sistema:
+
+☕️ Sistema para gerenciamento de vendas de produtos, sendo o pricipal deles o Açaí. ✔️
+
+☕️ Desenvolvido com a linguagem de programação C. ✔️
+
+☕️ O sistema permite persistência dos dados em arquivos. ✔️
+
+☕️ O sistema possui alocação dinâmica de memória. ✔️
+
+☕️ O projeto do sistema foi desenvolvido para por em prática, todos os conceitos sobre a linguagem C aprendidas durante a disciplina. ✔️
