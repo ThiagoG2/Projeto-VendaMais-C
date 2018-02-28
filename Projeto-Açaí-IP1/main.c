@@ -1,7 +1,7 @@
 /*****************************************************************************
-  IntroduÁ„o a ProgramaÁ„o 1 - Linguagem C - UFRPE                           *
-                                                                             *
-  Projeto: Sistema de autoatendimento na venda de AÁaÌ - AÁaÌteria           *
+  Introdu√ß√£o a Programa√ß√£o 1 - Linguagem C - UFRPE                           *
+  Projeto: Venda Mais A√ßa√≠                                                   *
+  Sistema de gerenciamento na venda de A√ßa√≠ - A√ßa√≠teria                      *
   Aluno: Thiago Gabriel Gomes da Silva Paiva                                 *
   Professor: Sidney Nogueira                                                 *
                                                                              *
@@ -60,8 +60,8 @@ int guardarPosicaoCliente;
 struct Acai *acai;
 struct Cliente *clientes;
 
-char cliente_arquivo[] = "/Users/thiago/Projeto-AÁaÌ/clientes.bin";
-char acai_arquivo[] = "/Users/thiago/Projeto-AÁaÌ/acai.bin";
+char cliente_arquivo[] = "/Users/thiago/Projeto-A√ßa√≠/clientes.bin";
+char acai_arquivo[] = "/Users/thiago/Projeto-A√ßa√≠/acai.bin";
 
 int DEBUG_MODE = 1;
 
@@ -84,14 +84,14 @@ void historicoAdm()
     int i, clienteX;
     float precoTotal = 0;
 
-    printf("Informe o n˙mero do cliente que vocÍ deseja visualizar as compras: \n");
+    printf("Informe o n√∫mero do cliente que voc√™ deseja visualizar as compras: \n");
     scanf("%d", &clienteX);
 
-    printf("\n-----  HistÛrico de compras dos clientes  -----\n");
+    printf("\n-----  Hist√≥rico de compras dos clientes  -----\n");
     for(i=0; i< clientes[clienteX - 1].qtdCompras; i++)
     {
         printf("\n--------  Compra [%d]  --------\n", i+1);
-        printf("CÛdigo: %d\n",clientes[clienteX - 1].compras[i].codigoCompra);
+        printf("C√≥digo: %d\n",clientes[clienteX - 1].compras[i].codigoCompra);
         printf("Quantidade comprada: %d\n",clientes[clienteX - 1].compras[i].qtdCompra);
         printf("Sabor: %s\n",clientes[clienteX - 1].compras[i].saborCompra);
         printf("Valor da compra: R$%.2f\n",clientes[clienteX - 1].compras[i].precoCompra);
@@ -104,7 +104,7 @@ void historicoAdm()
     }
     else
     {
-        printf("\nCliente ainda n„o possui compras ou n„o foi encontrado!\n\n");
+        printf("\nCliente ainda n√£o possui compras ou n√£o foi encontrado!\n\n");
     }
     printf("----------------------------------\n");
 
@@ -115,11 +115,11 @@ void historicoCliente()
     int i;
     float precoTotal = 0;
 
-    printf("\n-----  Meu HistÛrico de Compras  -----\n");
+    printf("\n-----  Meu Hist√≥rico de Compras  -----\n");
     for(i=0; i<clientes[guardarPosicaoCliente].qtdCompras; i++)
     {
         printf("\n--------  Compra [%d]  --------\n", i+1);
-        printf("CÛdigo: %d\n",clientes[guardarPosicaoCliente].compras[i].codigoCompra);
+        printf("C√≥digo: %d\n",clientes[guardarPosicaoCliente].compras[i].codigoCompra);
         printf("Quantidade comprada: %d\n",clientes[guardarPosicaoCliente].compras[i].qtdCompra);
         printf("Sabor: %s\n",clientes[guardarPosicaoCliente].compras[i].saborCompra);
         printf("Valor da compra: R$%.2f\n",clientes[guardarPosicaoCliente].compras[i].precoCompra);
@@ -135,20 +135,20 @@ void realizarCompra()
     int x = 0;
     int op,i,qtdAcai;
 
-    printf("Informe o cÛdigo do produto que deseja comprar: ");
+    printf("Informe o c√≥digo do produto que deseja comprar: ");
     scanf("%d", &op);
 
     for(i=0; i<estoque_acai; i++)
     {
         if(op == acai[i].codigo && acai[i].qtdProduto <= 0)
         {
-            printf("\nO Produto selecionado est· em falta no estoque, veja outras opÁıes de compra!\n");
+            printf("\nO Produto selecionado est√° em falta no estoque, veja outras op√ß√µes de compra!\n");
             x=1;
             break;
         }
         else if(op == acai[i].codigo && clientes[guardarPosicaoCliente].saldo >= acai[i].preco )
         {
-            printf("\nVocÍ selecionou o AÁaÌ de %s.\nInforme quantos deseja comprar? ", acai[i].sabor);
+            printf("\nVoc√™ selecionou o A√ßa√≠ de %s.\nInforme quantos deseja comprar? ", acai[i].sabor);
             scanf("%d", &qtdAcai);
 
             if(acai[i].qtdProduto - qtdAcai >= 0 && clientes[guardarPosicaoCliente].saldo - (acai[i].preco * qtdAcai) >= 0 && qtdAcai > 0)
@@ -156,7 +156,7 @@ void realizarCompra()
                 acai[i].qtdProduto = acai[i].qtdProduto - qtdAcai;
                 clientes[guardarPosicaoCliente].saldo = clientes[guardarPosicaoCliente].saldo - (acai[i].preco * qtdAcai);
 
-                printf("\nParabÈns pela compra, %s!\n", clienteEspecifico);
+                printf("\nParab√©ns pela compra, %s!\n", clienteEspecifico);
 
                 clientes[guardarPosicaoCliente].compras[clientes[guardarPosicaoCliente].qtdCompras].codigoCompra = acai[i].codigo;
                 clientes[guardarPosicaoCliente].compras[clientes[guardarPosicaoCliente].qtdCompras].precoCompra = acai[i].preco * qtdAcai;
@@ -167,7 +167,7 @@ void realizarCompra()
             }
             else
             {
-                printf("\nA compra n„o foi aprovada! Quantidade inv·lida ou saldo de compra insuficiente!\n");
+                printf("\nA compra n√£o foi aprovada! Quantidade inv√°lida ou saldo de compra insuficiente!\n");
             }
 
             x=1;
@@ -175,26 +175,26 @@ void realizarCompra()
         }
         else if(op == acai[i].codigo && clientes[guardarPosicaoCliente].saldo < acai[i].preco )
         {
-            printf("\nAtenÁ„o! Seu saldo de compras È insuficiente para esse produto.\nPor favor, recarregue seu saldo!\n");
+            printf("\nAten√ß√£o! Seu saldo de compras √© insuficiente para esse produto.\nPor favor, recarregue seu saldo!\n");
             x=1;
             break;
         }
     }
     if(!x)
     {
-        printf("\nCÛdigo de produto n„o encontrado!\n");
+        printf("\nC√≥digo de produto n√£o encontrado!\n");
     }
 }
 
 void mensagemErro(char *nome_arquivo)
 {
-    printf("Erro: N„o foi possÌvel abrir o arquivo %s, pois ele n„o existe!\nMas para o arquivo ser criado e salvo vocÍ deve sair corretamente do sistema!\n\n", nome_arquivo);
+    printf("Erro: N√£o foi poss√≠vel abrir o arquivo %s, pois ele n√£o existe!\nMas para o arquivo ser criado e salvo voc√™ deve sair corretamente do sistema!\n\n", nome_arquivo);
 
 }
 
 void mensagemErroGravar(char *nome_arquivo)
 {
-    printf("\nErro: N„o È possÌvel salvar no arquivo %s\nVerifique se o arquivo ou diretÛrio realmente existe!\n", nome_arquivo);
+    printf("\nErro: N√£o √© poss√≠vel salvar no arquivo %s\nVerifique se o arquivo ou diret√≥rio realmente existe!\n", nome_arquivo);
 
 }
 
@@ -391,7 +391,7 @@ void imprimeClientes()
         printf("CPF  = %s\n", clientes[c].cpf);
         printf("Idade = %d\n", clientes[c].idade);
         printf("Senha = %s\n", clientes[c].senha);
-        printf("EndereÁo = %s\n", clientes[c].endereco);
+        printf("Endere√ßo = %s\n", clientes[c].endereco);
         printf("Quantidade de compras = %d\n", clientes[c].qtdCompras);
         printf("Saldo do cliente = R$%.2f\n", clientes[c].saldo);
 
@@ -405,12 +405,12 @@ void imprimeAcai()
     printf("---- Lista de Produtos cadastrados ----\n");
     for(a=0; a < estoque_acai; a++)
     {
-        printf("\n-----  AÁaÌ (%d)  -----\n", a+1);
-        printf("CÛdigo  = %d\n", acai[a].codigo);
+        printf("\n-----  A√ßa√≠ (%d)  -----\n", a+1);
+        printf("C√≥digo  = %d\n", acai[a].codigo);
         printf("Sabor  = %s\n", acai[a].sabor);
         printf("Quantidade  = %d\n", acai[a].qtdProduto);
-        printf("PreÁo  = R$%.2f\n", acai[a].preco);
-        printf("DescriÁ„o  = %s\n", acai[a].descricao);
+        printf("Pre√ßo  = R$%.2f\n", acai[a].preco);
+        printf("Descri√ß√£o  = %s\n", acai[a].descricao);
     }
     printf("---------------------------------------\n");
 }
@@ -488,7 +488,7 @@ struct Cliente cadastroCliente()
 
     int k=0;
 
-    printf("\nCPF(Apenas n˙meros): ");
+    printf("\nCPF(Apenas n√∫meros): ");
     leStringTeclado(u.cpf, TAMANHO_CPF);
     getchar();
     while(!k)
@@ -506,25 +506,25 @@ struct Cliente cadastroCliente()
             getchar();
             if(u.idade < 7 || u.idade > 100)
             {
-                printf("Idade inv·lida, tente novamente!\n");
+                printf("Idade inv√°lida, tente novamente!\n");
                 menu_adm();
             }
             printf("Senha: ");
             leStringTeclado(u.senha, MAX_SENHA);
-            printf("EndereÁo: ");
+            printf("Endere√ßo: ");
             leStringTeclado(u.endereco, 99);
             printf("Quantidade de compras: ");
             scanf("%d", &u.qtdCompras);
             if(u.qtdCompras < 0 || u.qtdCompras > 50)
             {
-                printf("Quantidade de compras inv·lida, tente novamente!\n");
+                printf("Quantidade de compras inv√°lida, tente novamente!\n");
                 menu_adm();
             }
             printf("Saldo do cliente: ");
             scanf("%f", &u.saldo);
             if(u.saldo < 0)
             {
-                printf("Saldo inv·lido, tente novamente!\n");
+                printf("Saldo inv√°lido, tente novamente!\n");
                 menu_adm();
             }
             printf("\n---- Cliente cadastrado com sucesso! ----\n\n");
@@ -532,13 +532,13 @@ struct Cliente cadastroCliente()
         }
         else if(!z)
         {
-            printf("J· existe um cliente cadastrado com este CPF!\n");
+            printf("J√° existe um cliente cadastrado com este CPF!\n");
             k=1;
             menu_adm();
         }
         else
         {
-            printf("**** CPF inv·lido! ****\n*** Para se cadastrar È necess·rio um CPF v·lido! ***\n");
+            printf("**** CPF inv√°lido! ****\n*** Para se cadastrar √© necess√°rio um CPF v√°lido! ***\n");
             k=1;
             menu_adm();
 
@@ -562,18 +562,18 @@ struct Cliente atualizarCadastroCliente()
     getchar();
     if(u.idade < 7 || u.idade > 100)
     {
-        printf("Idade inv·lida, tente novamente!\n");
+        printf("Idade inv√°lida, tente novamente!\n");
         menu_adm();
     }
     printf("Nova Senha: ");
     leStringTeclado(u.senha, MAX_SENHA);
-    printf("EndereÁo: ");
+    printf("Endere√ßo: ");
     leStringTeclado(u.endereco, 99);
     printf("Novo saldo: ");
     scanf("%f", &u.saldo);
     if(u.saldo < 0)
     {
-        printf("Saldo inv·lido, tente novamente!\n");
+        printf("Saldo inv√°lido, tente novamente!\n");
         menu_adm();
     }
 
@@ -587,29 +587,29 @@ struct Acai atualizarCadastroAcai()
     struct Acai a;
 
 
-    printf("\nNova quantidade de AÁaÌ: ");
+    printf("\nNova quantidade de A√ßa√≠: ");
     scanf("%d", &a.qtdProduto);
     getchar();
     if(a.qtdProduto < 0)
         {
-            printf("Quantidade de cadastro do produto È inv·lida, tente novamente!\n");
+            printf("Quantidade de cadastro do produto √© inv√°lida, tente novamente!\n");
             menu_adm();
         }
-    printf("Novo sabor do AÁaÌ: ");
+    printf("Novo sabor do A√ßa√≠: ");
     leStringTeclado(a.sabor,20);
-    printf("Novo preÁo: ");
+    printf("Novo pre√ßo: ");
     scanf("%f", &a.preco);
     getchar();
     if(a.preco <= 0)
     {
-        printf("PreÁo do produto inv·lido, tente novamente!\n");
+        printf("Pre√ßo do produto inv√°lido, tente novamente!\n");
         menu_adm();
     }
-    printf("Nova descriÁ„o: ");
+    printf("Nova descri√ß√£o: ");
     leStringTeclado(a.descricao, 60);
 
 
-    printf("\n---- AÁaÌ Atualizado com sucesso! ----\n");
+    printf("\n---- A√ßa√≠ Atualizado com sucesso! ----\n");
 
     return a;
 }
@@ -619,37 +619,37 @@ struct Acai cadastroAcai()
 
     struct Acai a;
 
-    printf("\nInforme o cÛdigo do AÁaÌ: ");
+    printf("\nInforme o c√≥digo do A√ßa√≠: ");
     scanf("%d", &a.codigo);
     int x = igualdadeCodigo(a.codigo);
     if(x)
     {
         getchar();
-        printf("Informe o sabor do AÁaÌ: ");
+        printf("Informe o sabor do A√ßa√≠: ");
         leStringTeclado(a.sabor,20);
-        printf("Informe a quantidade de AÁaÌ: ");
+        printf("Informe a quantidade de A√ßa√≠: ");
         scanf("%d", &a.qtdProduto);
         if(a.qtdProduto < 0)
         {
-            printf("Quantidade de cadastro do produto È inv·lida, tente novamente!\n");
+            printf("Quantidade de cadastro do produto √© inv√°lida, tente novamente!\n");
             menu_adm();
         }
-        printf("Informe o preÁo do AÁaÌ: ");
+        printf("Informe o pre√ßo do A√ßa√≠: ");
         scanf("%f", &a.preco);
         getchar();
         if(a.preco <= 0)
         {
-            printf("PreÁo do produto inv·lido, tente novamente!\n");
+            printf("Pre√ßo do produto inv√°lido, tente novamente!\n");
             menu_adm();
         }
-        printf("DescriÁ„o do AÁaÌ: ");
+        printf("Descri√ß√£o do A√ßa√≠: ");
         leStringTeclado(a.descricao, 60);
 
-        printf("\n---- AÁaÌ cadastrado com sucesso! ----\n\n");
+        printf("\n---- A√ßa√≠ cadastrado com sucesso! ----\n\n");
     }
     else
     {
-        printf("\nJ· existe um produto cadastrado com esse cÛdigo!\nPor favor, tente com um novo cÛdigo!\n");
+        printf("\nJ√° existe um produto cadastrado com esse c√≥digo!\nPor favor, tente com um novo c√≥digo!\n");
         menu_adm();
     }
 
@@ -802,12 +802,12 @@ void recarregarSaldo()
     {
         struct Cliente u2 = lerNovoSaldo();
         u->saldo = u->saldo + u2.saldo;
-        printf("Seu saldo foi cadastrado com sucesso!\nSeu novo saldo È R$%.2f\n", u->saldo);
+        printf("Seu saldo foi cadastrado com sucesso!\nSeu novo saldo √© R$%.2f\n", u->saldo);
 
     }
     else
     {
-        printf("Cliente n„o encontrado!\n");
+        printf("Cliente n√£o encontrado!\n");
     }
 }
 
@@ -815,14 +815,14 @@ void atualizarAcai()
 {
     int codigoAcai;
 
-    printf("Digite o cÛdigo do produto que deseja atualizar os dados:\n");
+    printf("Digite o c√≥digo do produto que deseja atualizar os dados:\n");
     scanf("%d", &codigoAcai);
 
     struct Acai *a = recuperaAcai(codigoAcai);
 
     if(a != NULL)
     {
-        printf("\nInforme os novos dados do AÁaÌ");
+        printf("\nInforme os novos dados do A√ßa√≠");
 
         struct Acai a2 = atualizarCadastroAcai();
 
@@ -833,7 +833,7 @@ void atualizarAcai()
     }
     else
     {
-        printf("Produto n„o encontrado!\n");
+        printf("Produto n√£o encontrado!\n");
     }
 }
 
@@ -860,21 +860,21 @@ void atualizarClientes()
     }
     else
     {
-        printf("Cliente n„o encontrado!\n");
+        printf("Cliente n√£o encontrado!\n");
     }
 }
 
 void removerAcai()
 {
     int code;
-    printf("Digite o cÛdigo do produto que ser· removido do sistema: ");
+    printf("Digite o c√≥digo do produto que ser√° removido do sistema: ");
     scanf("%d", &code);
 
     int remover = removerAcaiVetor(code);
 
     if(!remover)
     {
-        printf("\nProduto n„o encontrado!\n");
+        printf("\nProduto n√£o encontrado!\n");
     }
     else
     {
@@ -885,7 +885,7 @@ void removerAcai()
 void removerClientes()
 {
 
-    printf("Digite o CPF do cliente que ser· removido do sistema: ");
+    printf("Digite o CPF do cliente que ser√° removido do sistema: ");
 
     char cpf_cliente[13];
     leStringTeclado(cpf_cliente, 13);
@@ -894,7 +894,7 @@ void removerClientes()
 
     if(!sucesso)
     {
-        printf("\nCliente n„o encontrado!\n");
+        printf("\nCliente n√£o encontrado!\n");
     }
     else
     {
@@ -909,14 +909,14 @@ void menu_clientes()
     while(!sairMenu)
     {
         printf("\nSelecione o que deseja fazer:\n\n");
-        printf("1 - Visualizar Card·pio +AÁaÌ\n");
+        printf("1 - Visualizar Card√°pio +A√ßa√≠\n");
         printf("2 - Visualizar Dados cadastrais\n");
-        printf("3 - Comprar AÁaÌ\n");
+        printf("3 - Comprar A√ßa√≠\n");
         printf("4 - Recarregar Saldo\n");
-        printf("5 - Visualizar HistÛrico de Compras\n");
+        printf("5 - Visualizar Hist√≥rico de Compras\n");
         printf("6 - Voltar a tela de login\n");
         printf("7 - Finalizar sistema\n");
-        printf("OpÁ„o = ");
+        printf("Op√ß√£o = ");
 
         int opcao;
         scanf("%d", &opcao);
@@ -927,7 +927,7 @@ void menu_clientes()
         {
 
         case 1:
-            printf("---- Card·pio +AÁaÌ ----\n");
+            printf("---- Card√°pio +A√ßa√≠ ----\n");
             imprimeAcai();
             break;
         case 2:
@@ -954,7 +954,7 @@ void menu_clientes()
             break;
 
         default:
-            printf("Opc„o inv·lida!\n");
+            printf("Opc√£o inv√°lida!\n");
         }
     }
 }
@@ -970,16 +970,16 @@ void menu_adm()
         printf("\nSelecione o que deseja fazer:\n\n");
         printf("1 - Cadastrar Clientes\n");
         printf("2 - Visualizar Clientes\n");
-        printf("3 - HistÛrico de Compra dos Clientes\n");
+        printf("3 - Hist√≥rico de Compra dos Clientes\n");
         printf("4 - Atualizar Clientes\n");
         printf("5 - Remover Clientes\n");
-        printf("6 - Cadastrar Produtos +AÁaÌ\n");
+        printf("6 - Cadastrar Produtos +A√ßa√≠\n");
         printf("7 - Visualizar Produtos\n");
         printf("8 - Atualizar Produtos\n");
         printf("9 - Remover Produtos\n");
         printf("10 - Voltar a tela de login\n");
         printf("11 - Finalizar sistema\n");
-        printf("OpÁ„o = ");
+        printf("Op√ß√£o = ");
 
         int opcao;
         scanf("%d", &opcao);
@@ -1044,7 +1044,7 @@ void menu_adm()
             break;
 
         default:
-            printf("Opc„o inv·lida!\n");
+            printf("Opc√£o inv√°lida!\n");
         }
 
     }
@@ -1092,12 +1092,12 @@ void autentica_adm()
         printf("\nAutenticando administrador...\n");
         Sleep(2500);
         system("cls");
-        printf("\n----- ParabÈns! VocÍ foi logado no Sistema +AÁaÌ no modo Administrador! -----\n");
+        printf("\n----- Parab√©ns! Voc√™ foi logado no Sistema +A√ßa√≠ no modo Administrador! -----\n");
         menu_adm();
     }
     else
     {
-        printf("\n***** Login e/ou Senha inv·lida, tente novamente! *****\n\n");
+        printf("\n***** Login e/ou Senha inv√°lida, tente novamente! *****\n\n");
         autentica_adm();
     }
 }
@@ -1124,16 +1124,16 @@ void autentica_cliente()
 
     if(u != NULL)
     {
-        printf("\nAutenticando cliente +AÁaÌ...\n");
+        printf("\nAutenticando cliente +A√ßa√≠...\n");
         Sleep(2500);
         system("cls");
-        printf("\n----- ParabÈns! VocÍ foi logado no sistema +AÁaÌ -----\n");
+        printf("\n----- Parab√©ns! Voc√™ foi logado no sistema +A√ßa√≠ -----\n");
         bemVindo(verificaLoginCpf, senhaC);
         menu_clientes();
     }
     else
     {
-        printf("***** Login e/ou senha inv·lida, tente novamente! *****\n\n");
+        printf("***** Login e/ou senha inv√°lida, tente novamente! *****\n\n");
         autenticadorCliente();
     }
 
@@ -1146,7 +1146,7 @@ void bemVindo(char login[], char senhaCliente[])
     {
         if(!strcmp(clientes[i].cpf, login) && !strcmp(clientes[i].senha, senhaCliente))
         {
-            printf("\n    Ol·, %s! Bem vindo ao +AÁaÌ\n", clientes[i].nome);
+            printf("\n    Ol√°, %s! Bem vindo ao +A√ßa√≠\n", clientes[i].nome);
             strcpy(clienteEspecifico, clientes[i].nome);
             guardarPosicaoCliente = i;
             break;
@@ -1167,7 +1167,7 @@ void meusDados(char login[])
             printf("Idade: %d\n", clientes[i].idade);
             printf("CPF: %s\n",clientes[i].cpf);
             printf("Senha: %s\n",clientes[i].senha);
-            printf("EndereÁo: %s\n",clientes[i].endereco);
+            printf("Endere√ßo: %s\n",clientes[i].endereco);
             printf("Quantidade de compras: %d\n", clientes[i].qtdCompras);
             printf("Meu saldo: R$%.2f\n", clientes[i].saldo);
             printf("---------------------------\n");
@@ -1181,19 +1181,19 @@ void acesso_sistema()
 {
     int sistema, reentrar;
 
-    printf("Informe a opÁ„o de acesso ao Sistema +AÁaÌ!\n1- Administrador\n2- Cliente\n3- Sair\nOpÁ„o: ");
+    printf("Informe a op√ß√£o de acesso ao Sistema +A√ßa√≠!\n1- Administrador\n2- Cliente\n3- Sair\nOp√ß√£o: ");
     scanf("%d", &sistema);
     getchar();
     if(sistema == 1)
     {
 
-        printf("\nTELA DE AUTENTICA«√O ADMINISTRADOR +A«AÕ\n");
+        printf("\nTELA DE AUTENTICA√á√ÉO ADMINISTRADOR +A√áA√ç\n");
         printf("----------------------------------------\n\n");
         autentica_adm();
     }
     else if(sistema == 2)
     {
-        printf("\nTELA DE AUTENTICA«√O CLIENTE +A«AÕ\n");
+        printf("\nTELA DE AUTENTICA√á√ÉO CLIENTE +A√áA√ç\n");
         printf("------------------------------------\n\n");
         autentica_cliente();
     }
@@ -1203,7 +1203,7 @@ void acesso_sistema()
     }
     else
     {
-        printf("*** OpÁ„o inv·lida! Para tentar novamente digite 1! ***\n\n");
+        printf("*** Op√ß√£o inv√°lida! Para tentar novamente digite 1! ***\n\n");
         scanf("%d", &reentrar);
         if(reentrar ==1)
         {
@@ -1211,7 +1211,7 @@ void acesso_sistema()
         }
         else
         {
-            printf("Como vocÍ n„o ir· tentar novamente o sistema ser· finalizado...");
+            printf("Como voc√™ n√£o ir√° tentar novamente o sistema ser√° finalizado...");
             saindo_sistema();
         }
     }
@@ -1221,7 +1221,7 @@ void saindo_sistema()
 {
     gravarArquivo();
     system("cls");
-    printf("\n----- AtÈ Breve! VocÍ saiu do Sistema +AÁaÌ! -----\n");
+    printf("\n----- At√© Breve! Voc√™ saiu do Sistema +A√ßa√≠! -----\n");
     exit(0);
 }
 
@@ -1230,7 +1230,7 @@ int main()
     setlocale(LC_ALL, "Portuguese");
     system ("color 1f");
     printf("---------------------------------------------------\n");
-    printf("|      BEM VINDO AO SISTEMA DE COMPRAS +A«AÕ      |\n");
+    printf("|      BEM VINDO AO SISTEMA DE COMPRAS +A√áA√ç      |\n");
     printf("|_________________________________________________|\n\n");
 
 
